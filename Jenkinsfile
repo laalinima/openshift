@@ -3,7 +3,7 @@ pipeline {
 	stages {
 		stage('Prep') {
 			steps{
-				echo "${params.openshift_project} World!"
+				sh "oc project ${params.openshift_project}"
 			}
 		}
 		
