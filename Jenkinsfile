@@ -1,17 +1,9 @@
 pipeline {
 	agent any
-
-
 	stages {
 		stage('Prep') {
 			steps{
-				script {					
-					openshift.withCluster{						
-						openshift.withProject("nima-123"){
-							sh "oc get all -o wide"
-						}
-					}																					
-				}
+				"oc project $env.openshift-project"
 			}
 		}
 		
