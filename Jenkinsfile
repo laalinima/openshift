@@ -6,6 +6,7 @@ pipeline {
 		stage('Prep') {
 			steps{
 				script {
+					openshift.newProject("nima-123","--display-name", "Nima 123")
 					openshift.withCluster{
 						openshift.withProject('nima-0123'){
 						}
