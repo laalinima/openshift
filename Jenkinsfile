@@ -9,6 +9,7 @@ pipeline {
 					openshift.withCluster{
 						openshift.withProject("nima-123"){
 							sh 'oc version'
+							sh 'oc projetc nima-123'
 						}
 					}																					
 				}
