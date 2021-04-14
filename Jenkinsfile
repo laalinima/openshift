@@ -3,7 +3,7 @@ pipeline {
 	stages {
 		stage('Prep') {
 			steps{
-				"oc project $env.openshift-project"
+				sh "oc project $env.openshift-project"
 			}
 		}
 		
