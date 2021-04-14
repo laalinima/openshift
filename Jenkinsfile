@@ -3,13 +3,14 @@ pipeline {
 
 
 	stages {
-		stage('Setup') {
-			script {
-				steps{
-					openshift.withProject('nima-123')								
+		stage('Prep') {
+			steps{
+				script {
+					openshift.withProject('nima-0123')																
 				}
 			}
 		}
+		
 		//stage('Compile') {
 		//	steps{
 		//		sh "oc version"
