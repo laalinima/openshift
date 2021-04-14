@@ -1,0 +1,182 @@
+openapi: 3.0.2
+info:
+    title: Account API
+    version: 1.1.0
+    description: Account API
+paths:
+    '/account/v1beta1/profile/{id}/':
+        get:
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/AccountProfile'
+                    description: Get account's details
+                '400':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                    description: Bad request if the id is invalid
+                '401':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                    description: Unauthorized if the token is invalid
+                '404':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                    description: Not found if the account wasn't in the database
+            security:
+                -
+                    Authorization: []
+            summary: Get an account's information by id
+        put:
+            requestBody:
+                description: At least one valid field is required
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/AccountProfile'
+                        examples:
+                            Updating phone number:
+                                value:
+                                    personPhoneNumber: 4257266021
+                            Updating multiple fields:
+                                value:
+                                    personAddressLineItem1: some text
+                                    personAddressCity: some text
+                                    personAddressProvince: some text
+                                    personAddressPostalcode: some text
+                                    personEmailAddress: some text
+                required: true
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/AccountProfile'
+                    description: Respond with the updated account
+                '400':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                    description: |-
+                        Bad request if:
+                        - id is invalid
+                        - there is no body
+                '401':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                    description: Unauthorized if the token is invalid
+                '404':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/AccountProfile'
+                    description: Not found if the id wasn't in the database
+            security:
+                -
+                    Authorization: []
+            summary: Update an account's information
+        parameters:
+            -
+                name: id
+                description: guid
+                schema:
+                    type: string
+                in: path
+                required: true
+components:
+    schemas:
+        Error:
+            description: ''
+            type: object
+            properties:
+                message:
+                    description: ''
+                    type: string
+            example:
+                message: some text
+        AccountProfile:
+            description: ''
+            required: []
+            type: object
+            properties:
+                personSin:
+                    description: ''
+                    type: integer
+                personFirstName:
+                    description: ''
+                    type: string
+                personLastName:
+                    description: ''
+                    type: string
+                personAddressLineItem1:
+                    description: ''
+                    type: string
+                personAddressLineItem2:
+                    description: ''
+                    type: string
+                personAddressCity:
+                    description: ''
+                    type: string
+                personAddressProvince:
+                    description: ''
+                    type: string
+                personAddressPostalcode:
+                    description: ''
+                    type: string
+                personDateOfBirth:
+                    description: ''
+                    type: string
+                personGender:
+                    description: ''
+                    type: string
+                directDepositTransitNumber:
+                    description: ''
+                    type: integer
+                directDepositFiNumber:
+                    description: ''
+                    type: integer
+                directDepositAccountNumber:
+                    description: ''
+                    type: integer
+                personEmailAddress:
+                    description: ''
+                    type: string
+                personPhoneNumber:
+                    description: ''
+                    type: integer
+                guid:
+                    description: ''
+                    type: string
+            example:
+                guid: c678eb8d-2abe-43fc-a584-53f881a2ee2c
+                personSin: 649534689
+                personFirstName: some text
+                personLastName: some text
+                personAddressLineItem1: some text
+                personAddressLineItem2: some text
+                personAddressCity: some text
+                personAddressProvince: some text
+                personAddressPostalcode: A1B 2C3
+                personDateOfBirth: some text
+                personGender: some text
+                directDepositTransitNumber: 49
+                directDepositFiNumber: 62
+                directDepositAccountNumber: 5
+                personEmailAddress: address@email.xyz
+                personPhoneNumber: 8342493923
+    securitySchemes:
+        Authorization:
+            scheme: bearer
+            bearerFormat: JWT
+            type: http
