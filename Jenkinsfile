@@ -8,7 +8,7 @@ pipeline {
 				script {					
 					openshift.withCluster{						
 						openshift.withProject("nima-123"){
-
+							sh "oc get all -o wide"
 						}
 					}																					
 				}
