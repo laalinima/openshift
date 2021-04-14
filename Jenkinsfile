@@ -6,8 +6,7 @@ pipeline {
 		stage('Prep') {
 			steps{
 				script {					
-					openshift.withCluster{
-						sh "oc policy add-role-to-user edit system:serviceaccount:cicd:jenkins -n $env.openshift-project"
+					openshift.withCluster{						
 						openshift.withProject("nima-123"){
 							sh 'oc version'
 							sh 'oc project nima-123'
