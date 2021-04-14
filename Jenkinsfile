@@ -4,8 +4,10 @@ pipeline {
 
 	stages {
 		stage('Setup') {
-			steps{
-				openshift.withProject('nima-123')								
+			script {
+				steps{
+					openshift.withProject('nima-123')								
+				}
 			}
 		}
 		//stage('Compile') {
