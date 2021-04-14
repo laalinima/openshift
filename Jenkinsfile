@@ -6,8 +6,10 @@ pipeline {
 		stage('Prep') {
 			steps{
 				script {
-					openshift.withProject('nima-0123'){
-					}																
+					openshift.withCluster{
+						openshift.withProject('nima-0123'){
+						}
+					}																					
 				}
 			}
 		}
