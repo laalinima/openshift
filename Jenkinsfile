@@ -7,7 +7,9 @@ pipeline {
 			steps{
 				script {					
 					openshift.withCluster{
-						openshift.newProject("nima-123");
+						openshift.withProject("nima-123"){
+							sh 'oc version'
+						}
 					}																					
 				}
 			}
