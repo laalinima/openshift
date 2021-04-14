@@ -3,7 +3,7 @@ pipeline {
 	stages {
 		stage('Prep') {
 			steps{
-				echo "${params.openshift-project}"
+				echo "${openshift-project}"
 			}
 		}
 		
