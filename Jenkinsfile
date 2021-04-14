@@ -7,7 +7,7 @@ pipeline {
 			steps{
 				script {					
 					openshift.withCluster{
-						openshift.newProject("nima-123","--display-name", "Nima 123")
+						openshift.newProject("nima-123")
 					}																					
 				}
 			}
