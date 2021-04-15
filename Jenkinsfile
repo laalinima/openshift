@@ -6,7 +6,7 @@ pipeline {
 				//sh "oc project ${params.openshift_project}"
 				script {
                 			openshift.withCluster() {
-                    			openshift.withProject('${params.openshift_project}') {
+                    			openshift.withProject(${params.openshift_project}) {
                         		echo "Using project: ${openshift.project()}"
                     	}
                 }
