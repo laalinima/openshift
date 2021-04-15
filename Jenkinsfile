@@ -2,8 +2,7 @@ pipeline {
 	agent any
 	stages {
 		stage('Prep') {
-			steps{
-				sh "oc policy add-role-to-user edit system:serviceaccount:cicd:jenkins -n ${params.openshift_project}"
+			steps{				
 				sh "oc project ${params.openshift_project}"
 			}
 		}
